@@ -1,5 +1,8 @@
 package com.bae.equationSaverApp.rest;
 
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,5 +23,10 @@ public class EquationsController {
 	@PostMapping("/createEquation")
 	public Equations createEquation(@RequestBody Equations equation) {
 		return this.service.createEquation(equation);
+	}
+
+	@GetMapping("/getAllEquations")
+	public List<Equations> getAllEquations() {
+		return this.service.getAllEquations();
 	}
 }
