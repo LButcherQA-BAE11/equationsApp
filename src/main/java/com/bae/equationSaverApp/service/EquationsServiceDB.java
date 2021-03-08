@@ -1,8 +1,11 @@
 package com.bae.equationSaverApp.service;
 
+import org.springframework.stereotype.Service;
+
 import com.bae.equationSaverApp.domain.Equations;
 import com.bae.equationSaverApp.repo.EquationsRepo;
 
+@Service
 public class EquationsServiceDB implements EquationsService {
 
 	private EquationsRepo repo;
