@@ -47,4 +47,10 @@ public class EquationsServiceDB implements EquationsService {
 		return this.repo.save(existing);
 	}
 
+	@Override
+	public boolean removeEquation(Long id) {
+		this.repo.deleteById(id);
+		return this.repo.existsById(id);
+	}
+
 }
