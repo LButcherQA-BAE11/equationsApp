@@ -1,8 +1,11 @@
 package com.bae.equationSaverApp;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +54,21 @@ public class EquationsControllerIntegrationTest {
 		ResultMatcher matchBody = content().json(savedEquationAsJSON);
 
 		this.mockMVC.perform(mockRequest).andExpect(matchStatus).andExpect(matchBody);
+	}
+
+	@Test
+	void testRead() throws Exception {
+		Equations testEquation = new Equations(1L, "First law", "F=ma", "Newton", "Physics");
+		List<Equations> testListEquation = List.of(testEquation);
+		String testEquationAsJSON = this.mapper.writeValueAsString(testListEquation);
+
+		RequestBuilder mockRequest = get("/getAllEquations");
+
+		ResultMatcher checkStatus = status().isOk();
+
+		ResultMatcher checkBody = content().json(testEquationAsJSON);
+
+		this.mockMVC.perform(mockRequest).andExpect(checkStatus).andExpect(checkBody);
 	}
 
 }

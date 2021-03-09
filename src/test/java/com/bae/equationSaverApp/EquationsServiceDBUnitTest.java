@@ -35,15 +35,15 @@ public class EquationsServiceDBUnitTest {
 
 		Mockito.verify(this.repo, Mockito.times(1)).save(newEquation);
 	}
-
-	@Test
+	
+	@Test 
 	void testRead() {
-
+		
 		Equations savedEquations = new Equations(1L, "Newton", "F=ma", "First law", "Physics");
 		List<Equations> allEquations = List.of(savedEquations);
-
+		
 		Mockito.when(this.repo.findAll()).thenReturn(allEquations);
-
+		
 		assertThat(this.service.getAllEquations()).isEqualTo(allEquations);
 	}
 }
