@@ -2,6 +2,7 @@ package com.bae.equationSaverApp;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -69,6 +70,25 @@ public class EquationsControllerIntegrationTest {
 		ResultMatcher checkBody = content().json(testEquationAsJSON);
 
 		this.mockMVC.perform(mockRequest).andExpect(checkStatus).andExpect(checkBody);
+	}
+
+	@Test
+	void testUpdate() throws Exception {
+
+		Equations updateEquation = new Equations("Feymann", "g-hc", "Second law", "Chemistry");
+		String updateEquationAsJSON = this.mapper.writeValueAsString(updateEquation);
+
+		RequestBuilder mockRequest = put("/update/1").contentType(MediaType.APPLICATION_JSON)
+				.content(updateEquationAsJSON);
+
+		Equations updatedEquation = new Equations(1L, "Feymann", "g-hc", "Second law", "Chemistry");
+		String updatedEquationAsJSON = this.mapper.writeValueAsString(updatedEquation);
+
+		ResultMatcher matchStatus = status().isOk();
+
+		ResultMatcher matchObject = content().json(updatedEquationAsJSON);
+
+		this.mockMVC.perform(mockRequest).andExpect(matchStatus).andExpect(matchObject);
 	}
 
 }
