@@ -9,4 +9,9 @@ public interface EquationsService {
 	Equations createEquation(Equations equation);
 
 	List<Equations> getAllEquations();
+
+	Equations getEquationById(Long id);
+
+	Equations updateEquation(Long id, Equations equation);
+
 }

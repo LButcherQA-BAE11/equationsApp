@@ -3,6 +3,7 @@ package com.bae.equationSaverApp;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -35,15 +36,31 @@ public class EquationsServiceDBUnitTest {
 
 		Mockito.verify(this.repo, Mockito.times(1)).save(newEquation);
 	}
-	
-	@Test 
+
+	@Test
 	void testRead() {
-		
+
 		Equations savedEquations = new Equations(1L, "Newton", "F=ma", "First law", "Physics");
 		List<Equations> allEquations = List.of(savedEquations);
-		
+
 		Mockito.when(this.repo.findAll()).thenReturn(allEquations);
-		
+
 		assertThat(this.service.getAllEquations()).isEqualTo(allEquations);
 	}
+
+	@Test
+	void testUpdate() {
+		Long id = 1L;
+
+		Equations newEquation = new Equations("Newton", "g-hc", "Second law", "Physics");
+		Optional<Equations> optionalEquation = Optional.of(new Equations(id, "Newton", "F=ma", "First law", "Physics"));
+		Equations updatedEquation = new Equations(id, newEquation.getEquationName(), newEquation.getEquation(),
+				newEquation.getDescription(), newEquation.getSubject());
+
+		Mockito.when(this.repo.findById(id)).thenReturn(optionalEquation);
+		Mockito.when(this.repo.save(updatedEquation)).thenReturn(updatedEquation);
+
+		assertThat(this.service.updateEquation(id, newEquation)).isEqualTo(updatedEquation);
+	}
+
 }
