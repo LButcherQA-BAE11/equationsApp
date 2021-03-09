@@ -1,5 +1,7 @@
 package com.bae.equationSaverApp.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.bae.equationSaverApp.domain.Equations;
@@ -19,6 +21,11 @@ public class EquationsServiceDB implements EquationsService {
 	public Equations createEquation(Equations equation) {
 
 		return this.repo.save(equation);
+	}
+
+	@Override
+	public List<Equations> getAllEquations() {
+		return this.repo.findAll();
 	}
 
 }
