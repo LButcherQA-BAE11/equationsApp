@@ -47,6 +47,6 @@ public class EquationsController {
 	@DeleteMapping("/delete/{id}")
 	public boolean removeEquation(@PathVariable Long id) {
 
-		return !this.service.removeEquation(id);
+		return this.service.removeEquation(id);
 	}
 }

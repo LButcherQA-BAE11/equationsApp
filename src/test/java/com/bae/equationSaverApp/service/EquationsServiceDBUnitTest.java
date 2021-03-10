@@ -1,4 +1,4 @@
-package com.bae.equationSaverApp;
+package com.bae.equationSaverApp.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -13,7 +13,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.bae.equationSaverApp.domain.Equations;
 import com.bae.equationSaverApp.repo.EquationsRepo;
-import com.bae.equationSaverApp.service.EquationsServiceDB;
 
 @SpringBootTest
 public class EquationsServiceDBUnitTest {
@@ -61,6 +60,30 @@ public class EquationsServiceDBUnitTest {
 		Mockito.when(this.repo.save(updatedEquation)).thenReturn(updatedEquation);
 
 		assertThat(this.service.updateEquation(id, newEquation)).isEqualTo(updatedEquation);
+
+		Mockito.verify(this.repo, Mockito.times(1)).findById(id);
+		Mockito.verify(this.repo, Mockito.times(1)).save(updatedEquation);
+
+	}
+
+	@Test
+	void testDelete() {
+		Long id = 1L;
+
+		Mockito.when(this.repo.existsById(id)).thenReturn(true);
+
+		assertThat(this.service.removeEquation(id)).isEqualTo(false);
+
+	}
+
+	@Test
+	void testDeleteInvalid() {
+		Long id = 1L;
+
+		Mockito.when(this.repo.existsById(id)).thenReturn(false);
+
+		assertThat(this.service.removeEquation(id)).isEqualTo(true);
+
 	}
 
 }

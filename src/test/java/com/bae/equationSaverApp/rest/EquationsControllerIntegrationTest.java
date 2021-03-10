@@ -1,4 +1,4 @@
-package com.bae.equationSaverApp;
+package com.bae.equationSaverApp.rest;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
