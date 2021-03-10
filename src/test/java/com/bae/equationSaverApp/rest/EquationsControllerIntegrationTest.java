@@ -1,5 +1,6 @@
-package com.bae.equationSaverApp;
+package com.bae.equationSaverApp.rest;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -89,6 +90,17 @@ public class EquationsControllerIntegrationTest {
 		ResultMatcher matchObject = content().json(updatedEquationAsJSON);
 
 		this.mockMVC.perform(mockRequest).andExpect(matchStatus).andExpect(matchObject);
+	}
+
+	@Test
+	void testDelete() throws Exception {
+
+		RequestBuilder mockRequest = delete("/delete/1");
+
+		ResultMatcher matchStatus = status().isOk();
+		ResultMatcher matchBody = content().string("true");
+
+		this.mockMVC.perform(mockRequest).andExpect(matchStatus).andExpect(matchBody);
 	}
 
 }

@@ -14,4 +14,6 @@ public interface EquationsService {
 
 	Equations updateEquation(Long id, Equations equation);
 
+	boolean removeEquation(Long id);
+
 }

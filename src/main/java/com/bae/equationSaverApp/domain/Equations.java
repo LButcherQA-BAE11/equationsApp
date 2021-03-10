@@ -82,4 +82,50 @@ public class Equations {
 		this.subject = subject;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((equation == null) ? 0 : equation.hashCode());
+		result = prime * result + ((equationName == null) ? 0 : equationName.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((subject == null) ? 0 : subject.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Equations other = (Equations) obj;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (equation == null) {
+			if (other.equation != null)
+				return false;
+		} else if (!equation.equals(other.equation))
+			return false;
+		if (equationName == null) {
+			if (other.equationName != null)
+				return false;
+		} else if (!equationName.equals(other.equationName))
+			return false;
+		if (id != other.id)
+			return false;
+		if (subject == null) {
+			if (other.subject != null)
+				return false;
+		} else if (!subject.equals(other.subject))
+			return false;
+		return true;
+	}
+
 }

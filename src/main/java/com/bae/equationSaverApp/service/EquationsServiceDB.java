@@ -37,7 +37,8 @@ public class EquationsServiceDB implements EquationsService {
 
 	@Override
 	public Equations updateEquation(Long id, Equations newEquation) {
-		Equations existing = this.getEquationById(id);
+		Optional<Equations> equationOpt = this.repo.findById(id);
+		Equations existing = equationOpt.get();
 
 		existing.setEquationName(newEquation.getEquationName());
 		existing.setEquation(newEquation.getEquation());
@@ -45,6 +46,12 @@ public class EquationsServiceDB implements EquationsService {
 		existing.setSubject(newEquation.getSubject());
 
 		return this.repo.save(existing);
+	}
+
+	@Override
+	public boolean removeEquation(Long id) {
+		this.repo.deleteById(id);
+		return !this.repo.existsById(id);
 	}
 
 }
