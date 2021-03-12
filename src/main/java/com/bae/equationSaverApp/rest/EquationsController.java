@@ -2,6 +2,7 @@ package com.bae.equationSaverApp.rest;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,7 @@ import com.bae.equationSaverApp.domain.Equations;
 import com.bae.equationSaverApp.service.EquationsService;
 
 @RestController
+@CrossOrigin
 public class EquationsController {
 
 	private EquationsService service;
