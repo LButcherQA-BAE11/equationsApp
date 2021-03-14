@@ -1,0 +1,1 @@
+INSERT INTO `equations` (`description`,`equation`, `equation_name`, `subject`) VALUES('Newton','F=ma', 'First law', 'Physics');
