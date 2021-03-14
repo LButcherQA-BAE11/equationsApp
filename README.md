@@ -1,4 +1,4 @@
-# equationsApp-FrontEnd
+# equationsApp-BackEnd
 
 This README is for my CRUD (Create, Read, Update, Delete) application that incorporates full stack development, HTML/CSS/JS front end web design and a Java back end with database management with the use of H2 Console for testing and MySQL for production.
 
